@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="WhatToWatch">
+<head>
+	<title >What to Watch</title>
+	<!-- INCLUDE REQUIRED THIRD PARTY LIBRARY JAVASCRIPT AND CSS -->
+
+	<script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/ui-bootstrap-tpls-0.11.0.js"></script>
+	<script type="text/javascript" src="js/angular-local-storage.js"></script>
+	<script type="text/javascript" src="js/angular-route.js"></script>
+	<!-- AngularFire Library -->
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+	
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<!-- INCLUDE APPLICATION SPECIFIC CSS AND JAVASCRIPT -->
+	<script type="text/javascript" src="js/movies-app/app.js"></script>
+	<script type="text/javascript" src="js/movies-app/controllers/mainController.js"></script>
+	<script type="text/javascript" src="js/movies-app/controllers/myListController.js"></script>
+</head>
+<body>
+
+	<script type="text/ng-template" id="trailerModal">
+		<div class="modal-body embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" type="text/html" ng-src={{trailer}} allowfullscreen frameborder="0">
+		</div>
+	</script>
+	
+    <div class='banner'>
+        <div class='container'>
+            <h1>What to Watch</h1>
+        </div>
+    </div>
+	
+	<div ng-view></div>
+</body>
+</html>

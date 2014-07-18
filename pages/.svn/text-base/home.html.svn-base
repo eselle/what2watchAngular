@@ -1,0 +1,53 @@
+<!-- home.html -->
+<div class="container main-frame" ng-controller="mainController" ng-init="init()">
+		<div class="search-box row-fluid form-inline">
+			<label>Filter: </label>
+			<input type="text" ng-model="filterText"/>
+			<label>Genre: </label>
+			<select ng-model="genreFilter" ng-options="label for label in availableGenres">
+			    <option value="">All</option>
+			</select>
+			<label>Order by: </label>
+			<select ng-model="orderField" ng-options="label for label in orderFields" class="input-medium"></select>
+			<select ng-model="orderReverse"class="input-medium">
+			    <option value="true">Descending</option>
+			    <option value="false">Ascending</option>
+			</select>
+			<a class="btn btn-success btn-lg" href="#myList">My List</a>
+		</div>
+
+       
+
+        <div class="results-container" infinite-scroll="loadNew" >
+
+            <ul class="episode-list">
+
+            	<li ng-repeat="movie in movies | filter: filterText | isGenre:genreFilter | orderBy:customOrder:orderReverse | limitTo:totalDisplayed">
+				    <div class="row-fluid">
+				        <div class="span3">
+				            <img src="{{movie.poster}}" />
+				        </div>
+				        <div class="span6">
+				            <h3>{{movie.title}}</h3>
+				            <p>{{movie.overview}}</p>
+				        </div>
+				        <div class="span3">
+				            <div class="fulldate pull-right label label-info">{{movie.released*1000 | date}}</div>
+				            <ul class="show-info">
+				                <li><strong>Genres:</strong> 
+								<span class="label label-inverse genre" ng-repeat="genre in movie.genres"  ng-click="setGenreFilter(genre)">{{genre}}</span></li>
+				            </ul>
+							<div class="buttonsMovie">
+								<a class="btn btn-primary" ng-click="watchTrailer(movie.trailer)">Trailer</a>
+								<a href="" ng-disabled="movieIsAdded(movie)" class="btn btn-primary" ng-click="addMovieToList(movie)">
+									{{ !movieIsAdded(movie) && 'Add To My List' || 'Added To My List' }}</a>
+							</div>
+						</div>
+				    </div>
+				</li>
+
+
+            </ul>
+        </div>
+        <div class="results-bottom"></div>
+</div>

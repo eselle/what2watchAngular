@@ -1,0 +1,30 @@
+<div class="container main-frame" ng-controller="myListController" ng-init="init()">
+		<div class="search-box row-fluid form-inline">
+			<a class="btn btn-lg" href="#/">Back to Movies</a>
+		</div>
+		
+        <div class="results-container">
+            <ul class="episode-list">
+            	<li ng-repeat="(key,movie) in myMovies">
+				    <div class="row-fluid">
+				        <div class="span3">
+				            <img src="{{movie.poster}}" />
+				        </div>
+				        <div class="span6">
+				            <h3>{{movie.title}}</h3>
+				            <p>{{movie.overview}}</p>
+				        </div>
+				        <div class="span3">
+				            <div class="fulldate pull-right label label-info">{{movie.released*1000 | date}}</div>
+				            <ul class="show-info">
+				                <li><strong>Genres:</strong> 
+								<span class="label label-inverse genre" ng-repeat="genre in movie.genres"  ng-click="setGenreFilter(genre)">{{genre}}</span></li>
+				            </ul>
+				            <a href="" class="btn btn-primary" ng-click="watchTrailer(movie.trailer)">Trailer</a>
+				            <a href="" class="btn btn-primary" ng-click="removeMovie(key)">Delete</a>
+				        </div>
+				    </div>
+				</li>
+            </ul>
+	    </div>
+</div>
